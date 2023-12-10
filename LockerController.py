@@ -1,14 +1,17 @@
 from Locker import Locker
+from Combination import Combination
+from LockerView import LockerView
 class LockerController:
     """Locker Controller Class"""
 
-    def __init__(self):
-        self.lockerModel = Locker()
+    def __init__(self, locker: Locker, lockerView: LockerView):
+        self.lockerModel = locker
+        self.lockerView = lockerView
 
-    def getLocker(self):
+    def getLockeritems(self):
         """Returns the locker"""
-        return self.lockerModel.getLocker()
+        return self.lockerView.displayLocker(self.lockerModel.getLocker())
 
-    def addCombo(self, combo):
+    def addNewCombo(self, combo: Combination):
         """Adds a combo to the locker class"""
         self.lockerModel.addCombo(combo)
