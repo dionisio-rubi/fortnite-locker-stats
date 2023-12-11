@@ -1,5 +1,6 @@
 from CombinationView import CombinationView
 # from LockerController import LockerController
+
 class LockerView:
     """View for the Locker class"""
 
@@ -9,6 +10,9 @@ class LockerView:
     def displayLocker(self, locker):
         """Displays the locker"""
         print("Locker:")
+        res = []
         for combo in locker:
-            self.comboView.printCombination(combo)
+            res.append(self.comboView.printCombination(combo))
             # print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        # print(res)
+        return res

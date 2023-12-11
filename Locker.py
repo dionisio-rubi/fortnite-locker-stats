@@ -8,6 +8,23 @@ class Locker:
 
     def getLocker(self):
         """Returns the locker"""
+        try:
+            conn = pg.connect(host='localhost', dbname='fortnite', user='postgres', password='password')
+            cur = conn.cursor()
+
+            script = 'SELECT outfit.name, outfit.description, outfit.rarity, fortniteSets.series_name, fortniteSets.description FROM outfit JOIN fortniteSets ON outfit.set_id = fortniteSets.set_id WHERE outfit.outfit_id = %s'
+            insert_statement = (combo.getName(), combo.getSoloWins(), combo.getDuoWins(), combo.getTrioWins(), combo.getSquadWins(), combo.getOutfitID(), combo.getBackblingID(), combo.getPickaxeID(), combo.getGliderID(), combo.getContrailID())
+            cur.execute(script, insert_statement)
+            conn.commit()
+
+        except Exception as error:
+            print(error)
+
+        finally:
+            if conn is not None:
+                conn.close()
+            if cur is not None:
+                cur.close()
         return self.locker
 
     def addCombo(self, combo: Combination):
