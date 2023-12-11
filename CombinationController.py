@@ -8,6 +8,9 @@ class CombinationController:
         self.comboModel = combination
         self.comboview = view
 
+    def setCombination(self, combination: Combination):
+        self.comboModel = combination
+
     def getCombinationName(self):
         """Returns the name of the combination, calls upon combination class"""
         return self.comboModel.getName()
