@@ -12,3 +12,8 @@ class LockerView:
         for combo in locker:
             self.comboView.printCombination(combo)
             # print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+    def displayLockerNames (self, locker):
+        """Displays only the name of the combination"""
+        for combo in range(len(locker)):
+            print('[' + str(combo) + ']', self.comboView.printComboNames()[combo])

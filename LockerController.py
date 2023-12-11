@@ -12,6 +12,15 @@ class LockerController:
         """Returns the locker"""
         return self.lockerView.displayLocker(self.lockerModel.getLocker())
 
+    def getAllLockerNames(self):
+        """returns the names of the combination"""
+        # self.lockerView.displayLockerNames(self.lockerModel.getLocker())
+        return self.lockerModel.getLockerName()
+
+    def getLockerCombos(self):
+        """returns the combination objects"""
+        return self.lockerModel.getLocker()
+
     def addNewCombo(self, combo: Combination):
         """Adds a combo to the locker class"""
         self.lockerModel.addCombo(combo)
