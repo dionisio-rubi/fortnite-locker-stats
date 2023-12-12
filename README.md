@@ -16,7 +16,28 @@ should be able to see specific information pertaining to a certain cosmetic, suc
 the set a certain outfit belongs to.
 
 ## How to Run ##
+First you want to set up a new postgreSQL database using the following steps:
 
+    * Create a new Database in pg_admin
+    * Make sure that the host = localhost
+    * Name the database 'fortnite' without the quotations
+    * set the username as 'postgres' without the quotations
+    * set the password as 'password' without the quotations
+
+Then clone the repository https://github.com/dionisio-rubi/fortnite-locker-stats.git or if you download the files that works too.
+
+Before running thr program, you need to have the fortnite information from the API so you can run the program, in the main.py file on line 618,make sure to uncomment the following:
+
+```python
+# getFortnite()
+```
+
+Lastly, to run the program, cd into the project folder, or make sure you are in the project folder. Then, run the command in the terminal:
+
+```python
+python3 main.py
+```
+To exit the application, just press the X button on the top right. After exiting the program, make sure to comment the line you uncommented beforehand, otherwise your locker will be cleared. That's it! Have fun! :)
 
 ## Sources Used ##
 - [Fortnite API](https://fortnite-api.com/v2/cosmetics/br)

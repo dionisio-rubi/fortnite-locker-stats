@@ -2,23 +2,23 @@ import psycopg as pg
 
 class Combination:
     """Combination Class that has information about one specific combo"""
-    def __init__(self):
+    def __init__(self, name='', outfit='CID_Creative_Mannequin_M_Default', pickaxe='', glider='', contrail='', backbling='', solo_wins=0, duo_wins=0, trio_wins=0, squad_wins=0):
         # self.default_outfit = 'CID_Creative_Mannequin_M_Default'
         # self.default_pickaxe = 'DefaultPickaxe'
         # self.default_glider = 'DefaultGlider'
         # self.default_contrail = 'DefaultContrail'
         # self.default_backbling = 'BID_STWHeroNoDefaultBackpack'
 
-        self.name = ''
-        self.outfit = ''
-        self.pickaxe = ''
-        self.glider = ''
-        self.contrail = ''
-        self.backbling = ''
-        self.solo_wins = 0
-        self.duo_wins = 0
-        self.trio_wins = 0
-        self.squad_wins = 0
+        self.name = name
+        self.outfit = outfit
+        self.pickaxe = pickaxe
+        self.glider = glider
+        self.contrail = contrail
+        self.backbling = backbling
+        self.solo_wins = solo_wins
+        self.duo_wins = duo_wins
+        self.trio_wins = trio_wins
+        self.squad_wins = squad_wins
 
     def setName(self, name):
         """Set the name of the combo"""
