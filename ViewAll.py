@@ -25,9 +25,9 @@ class ViewAll:
         self.bg_color = "#5fceea"
         self.root = tk.Tk()
         self.root.title('Fortnite Locker Stats')
-        self.root.eval("tk::PlaceWindow . center")
+        # self.root.eval("tk::PlaceWindow . center")
 
-        self.mainFrame = tk.Frame(self.root, width=800, height=800, bg=self.bg_color)
+        self.mainFrame = tk.Frame(self.root, width=700, height=700, bg=self.bg_color)
         self.loggingFrame = tk.Frame(self.root, bg=self.bg_color)
         self.lockerFrame = tk.Frame(self.root, bg=self.bg_color)
         self.updatingFrame = tk.Frame(self.root, bg=self.bg_color)
@@ -64,15 +64,15 @@ class ViewAll:
         self.loggingFrame.tkraise()
 
         welcome = tk.Label(self.loggingFrame, text='Log in new Combo Information', font=('TKMenuFont', 24),
-                           bg=self.bg_color).pack(pady=60)
+                           bg=self.bg_color).pack(pady=10)
         welcome2 = tk.Label(self.loggingFrame, text='Enter what you would like to name your combo', font=('TKMenuFont', 18),
-                            bg=self.bg_color).pack(pady=10)
+                            bg=self.bg_color).pack(pady=5)
 
         entry = tk.Entry(self.loggingFrame)
         entry.pack(pady=10)
 
         welcome2 = tk.Label(self.loggingFrame, text='Select Outfit', font=('TKMenuFont', 18),
-                            bg=self.bg_color).pack(pady=10)
+                            bg=self.bg_color).pack(pady=5)
 
         outfit = tk.StringVar()
         dropdown = tk.OptionMenu(self.loggingFrame, outfit, *self.outfits).pack(pady=10)
@@ -80,41 +80,41 @@ class ViewAll:
         # selectedLockerName.trace('w', lambda *args: self.on_select(selectedLockerName.get()))
 
         welcome2 = tk.Label(self.loggingFrame, text='Select Backbling', font=('TKMenuFont', 18),
-                            bg=self.bg_color).pack(pady=10)
+                            bg=self.bg_color).pack(pady=5)
 
         backbling = tk.StringVar()
-        dropdown = tk.OptionMenu(self.loggingFrame, backbling, *self.backblings).pack(pady=10)
+        dropdown = tk.OptionMenu(self.loggingFrame, backbling, *self.backblings).pack(pady=5)
         backbling.set(self.backblings[0])
 
         welcome2 = tk.Label(self.loggingFrame, text='Select Contrail', font=('TKMenuFont', 18),
-                            bg=self.bg_color).pack(pady=10)
+                            bg=self.bg_color).pack(pady=5)
 
         contrail = tk.StringVar()
-        dropdown = tk.OptionMenu(self.loggingFrame, contrail, *self.contrails).pack(pady=10)
+        dropdown = tk.OptionMenu(self.loggingFrame, contrail, *self.contrails).pack(pady=5)
         contrail.set(self.contrails[0])
 
         welcome2 = tk.Label(self.loggingFrame, text='Select Glider', font=('TKMenuFont', 18),
-                            bg=self.bg_color).pack(pady=10)
+                            bg=self.bg_color).pack(pady=5)
 
         glider = tk.StringVar()
-        dropdown = tk.OptionMenu(self.loggingFrame, glider, *self.gliders).pack(pady=10)
+        dropdown = tk.OptionMenu(self.loggingFrame, glider, *self.gliders).pack(pady=5)
         glider.set(self.gliders[0])
 
         welcome2 = tk.Label(self.loggingFrame, text='Select Pickaxe', font=('TKMenuFont', 18),
-                            bg=self.bg_color).pack(pady=10)
+                            bg=self.bg_color).pack(pady=5)
 
         pickaxe = tk.StringVar()
-        dropdown = tk.OptionMenu(self.loggingFrame, pickaxe, *self.pickaxes).pack(pady=10)
+        dropdown = tk.OptionMenu(self.loggingFrame, pickaxe, *self.pickaxes).pack(pady=5)
         pickaxe.set(self.pickaxes[0])
 
         welcome2 = tk.Label(self.loggingFrame, text='Select Update Existing Combo in menu to log in number of wins!',
                             font=('TKMenuFont', 14),
-                            bg=self.bg_color).pack(pady=10)
+                            bg=self.bg_color).pack(pady=5)
 
         enter_button = tk.Button(self.loggingFrame, text='Enter', font=('TKHeadingFont', 16), bg='#1B90DD', fg='white',
                                  cursor="hand2", activebackground="black", activeforeground="white",
                                  width=10,
-                                 command=lambda: self.on_select(entry.get(), self.get_id('outfit', outfit.get()), self.get_id('backbling', backbling.get()),self.get_id('contrail', contrail.get()), self.get_id('glider', glider.get()), self.get_id('pickaxe', pickaxe.get()))).pack(pady=10)
+                                 command=lambda: self.on_select(entry.get(), self.get_id('outfit', outfit.get()), self.get_id('backbling', backbling.get()),self.get_id('contrail', contrail.get()), self.get_id('glider', glider.get()), self.get_id('pickaxe', pickaxe.get()))).pack(pady=5)
 
         gobackbtn = tk.Button(self.loggingFrame, text='Go Back ', font=('TKHeadingFont', 16), bg='darkblue',
                               fg='white',
@@ -125,22 +125,22 @@ class ViewAll:
         self.clear_widgets(self.mainFrame)
         self.updatingFrame.tkraise()
 
-        welcome = tk.Label(self.updatingFrame, text='Time to Update Locker Info', font=('TKMenuFont', 24), bg=self.bg_color).pack(pady=60)
+        welcome = tk.Label(self.updatingFrame, text='Time to Update Locker Info', font=('TKMenuFont', 24), bg=self.bg_color).pack(pady=20)
         welcome2 = tk.Label(self.updatingFrame, text='Choose the combination name you', font=('TKMenuFont', 18), bg=self.bg_color).pack()
-        welcome2 = tk.Label(self.updatingFrame, text='would like to update from the dropdown', font=('TKMenuFont', 18), bg=self.bg_color).pack(pady=20)
+        welcome2 = tk.Label(self.updatingFrame, text='would like to update from the dropdown', font=('TKMenuFont', 18), bg=self.bg_color).pack(pady=10)
 
         lockerItems = self.lockerC.getAllLockerNames()
 
         selectedLockerName = tk.StringVar()
-        dropdown = tk.OptionMenu(self.updatingFrame, selectedLockerName, *lockerItems).pack(pady=20)
+        dropdown = tk.OptionMenu(self.updatingFrame, selectedLockerName, *lockerItems).pack(pady=10)
         selectedLockerName.set(lockerItems[0])
         # selectedLockerName.trace('w', lambda *args: self.on_select(selectedLockerName.get()))
 
-        welcome2 = tk.Label(self.updatingFrame, text='Enter number of wins:', font=('TKMenuFont', 18), bg=self.bg_color).pack(pady=20)
+        welcome2 = tk.Label(self.updatingFrame, text='Enter number of wins:', font=('TKMenuFont', 18), bg=self.bg_color).pack(pady=10)
         entry = tk.Entry(self.updatingFrame)
         entry.pack(pady=10)
 
-        welcome2 = tk.Label(self.updatingFrame, text='Choose win type', font=('TKMenuFont', 18), bg=self.bg_color).pack(pady=20)
+        welcome2 = tk.Label(self.updatingFrame, text='Choose win type', font=('TKMenuFont', 18), bg=self.bg_color).pack(pady=10)
 
         solo_button = tk.Button(self.updatingFrame, text='Solo', font=('TKHeadingFont', 16), bg='#1B90DD', fg='white',
                               cursor="hand2", activebackground="black", activeforeground="white",
