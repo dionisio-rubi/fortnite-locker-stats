@@ -59,12 +59,15 @@ class CombinationView:
         print("       ~ Rarity: ", backbling_info[0][2])
         print("       ~ Set: ", backbling_info[0][3])
         print("       ~ Set Description: ", backbling_info[0][4])
+        result.append("~ Back Bling Name: " + backbling_info[0][0] + "\n       ~ Description: " + backbling_info[0][1] + "\n       ~ Rarity: " + backbling_info[0][2] + "\n       ~ Set: " + backbling_info[0][3] + "\n       ~ Set Description: " + backbling_info[0][4])
+
+
         print("   ~ Contrail Name: ", contrail_info[0][0])
         print("       ~ Description: ", contrail_info[0][1])
         print("       ~ Rarity: ", contrail_info[0][2])
         print("       ~ Set: ", contrail_info[0][3])
         print("       ~ Set Description: ", contrail_info[0][4])
-        result.append("~ Back Bling Name: " + backbling_info[0][0] + "\n       ~ Description: " + backbling_info[0][1] + "\n       ~ Rarity: " + backbling_info[0][2] + "\n       ~ Set: " + backbling_info[0][3] + "\n       ~ Set Description: " + backbling_info[0][4])
+        result.append("~ Contrail Name: " + contrail_info[0][0] + "\n       ~ Description: " + contrail_info[0][1] + "\n       ~ Rarity: " + contrail_info[0][2] + "\n       ~ Set: " + contrail_info[0][3] + "\n       ~ Set Description: " + contrail_info[0][4])
 
         print("   ~~~~~~~ Wins ~~~~~~~")
         print("      ~ Solo Wins: ", self.combo.getSoloWins())
