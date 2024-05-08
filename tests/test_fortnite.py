@@ -49,6 +49,78 @@ class integrationTest(unittest.TestCase):
     def test_ViewAll_integration(self):
         self.assertEqual(self.viewAll.start(), None)
 
+class FetchTest(unittest.TestCase):
+    def setUp(self):
+        self.info = Fetch()
+
+    def test_fetchOutfitNames(self):
+        self.assertNotEqual(self.info.printOutfitNames(), [])
+
+    def test_fetchPickaxeNames(self):
+        self.assertNotEqual(self.info.printPickaxeNames(), [])
+
+    def test_fetchContrailNames(self):
+        self.assertNotEqual(self.info.printContrailNames(), [])
+
+    def test_fetchBackblings(self):
+        self.assertNotEqual(self.info.printBackblings(), [])
+
+    def test_fetchGliderNames(self):
+        self.assertNotEqual(self.info.printGliderNames(), [])
+
+class CombinationViewTest(unittest.TestCase):
+    def setUp(self):
+        self.view = CombinationView()
+
+    def test_comboView(self):
+        self.assertEqual(self.view.printCombination(Combination()), None)
+        self.assertEqual(self.view.printComboNames(), [])
+
+class LockerTest(unittest.TestCase):
+    def setUp(self):
+        self.locker = Locker()
+
+    def test_locker(self):
+        self.assertEqual(self.locker.getLocker(), [])
+        self.assertEqual(self.locker.getLockerName(), [])
+        self.assertEqual(self.locker.addCombo(Combination()), None)
+
+class LockerViewTest(unittest.TestCase):
+def setUp(self):
+        self.view = LockerView(CombinationView())
+
+    def test_lockerView(self):
+        self.assertEqual(self.view.displayLocker([]), [])
+        self.assertEqual(self.view.displayLockerNames([]), [])
+
+class LockerControllerTest(unittest.TestCase):
+    def setUp(self):
+        self.locker = Locker()
+        self.view = LockerView(CombinationView())
+        self.controller = LockerController(self.locker, self.view)
+
+    def test_lockerController(self):
+        self.assertNotEqual(self.controller.getLockeritems(), [])
+        self.assertNotEqual(self.controller.getAllLockerNames(), [])
+        self.assertNotEqual(self.controller.getLockerCombos(), [])
+        self.assertEqual(self.controller.addNewCombo(Combination()), None)
+
+class CombinationTest(unittest.TestCase):
+    def test_comboName(self):
+        combo = Combination()
+        combo.setName('Test')
+        self.assertEqual('Test', 'Test')
+
+    # def test_comboOutfit(self):
+    #     combo = Combination()
+    #     combo.setOutfit('CID_Creative_Mannequin_M_Default')
+    #     self.assertEqual(combo.getOutfit(), 'CID_Creative_Mannequin_M_Default')
+    #
+    # def test_comboPickaxe(self):
+    #     combo = Combination()
+    #     combo.setPickaxe()
+    #     self.assertEqual(combo.getPickaxe(), 'DefaultPickaxe')
+
 
 
 
