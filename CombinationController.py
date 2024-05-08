@@ -22,6 +22,7 @@ class CombinationController:
     def setComboOutfit(self, outfit='CID_Creative_Mannequin_M_Default'):
         """Set the outfit of the combo, calls upon combination class"""
         self.comboModel.setOutfit(outfit)
+
     def setComboPickaxe(self, pickaxe='DefaultPickaxe'):
         """Set the pickaxe of the combo, calls upon combination class"""
         self.comboModel.setPickaxe(pickaxe)

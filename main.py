@@ -1,13 +1,7 @@
 import psycopg as pg
 import requests
 
-from Combination import Combination
-from CombinationView import CombinationView
-from CombinationController import CombinationController
-
-from Locker import Locker
-from LockerView import LockerView
-from LockerController import LockerController
+from ViewAll import ViewAll
 
 host_name = 'localhost'
 name = 'fortnite'
@@ -23,7 +17,8 @@ def getFortnite():
         conn = pg.connect(host=host_name, dbname=name, user=username, password=password)
         cur = conn.cursor()
 
-        # delete all tables if they exist only because Fortnite tends to add new cosmetics and recalling the API allows for new cosmetics to be accounted for
+        #delete all tables if they exist
+
         cur.execute('DROP TABLE IF EXISTS locker;')
         cur.execute('DROP TABLE IF EXISTS backbling;')
         cur.execute('DROP TABLE IF EXISTS glider;')
@@ -232,25 +227,6 @@ def getFortnite():
         if cur is not None:
             cur.close()
 
-def menu():
-    print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nChoose what you would like to do...")
-    print("1. Add a New Combo to your locker")
-    print("2. See locker")
-    print("3. Update number of wins of a Combo already in your locker")
-    print("4. Exit")
-    selection = input("\nSelection: ")
-    return int(selection)
-
-def updateMenu():
-    print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nChoose what you would like to do...")
-    print("1. Update Solo Wins")
-    print("2. Update Duo Wins")
-    print("3. Update Trio Wins")
-    print("4. Update Squad Wins")
-    print("5. Back")
-    selection = input("\nSelection: ")
-    return int(selection)
-
 def printOutfitNames():
     outfits = []
     try:
@@ -357,234 +333,9 @@ def printBackblings():
             cur.close()
     return backblings
 
-def validateChoice(choice, item):
-    choiceID = ('wrong')
-    try:
-        conn = pg.connect(host='localhost', dbname='fortnite', user='postgres', password='password')
-        cur = conn.cursor()
-
-        script = ''
-        if item == 'outfit':
-            script = 'SELECT outfit_id FROM outfit WHERE name = %s;'
-        elif item == 'glider':
-            script = 'SELECT glider_id FROM glider WHERE name = %s;'
-        elif item == 'backbling':
-            script = 'SELECT backbling_id FROM backbling WHERE name = %s;'
-        elif item == 'pickaxe':
-            script = 'SELECT pickaxe_id FROM pickaxe WHERE name = %s;'
-        elif item == 'contrail':
-            script = 'SELECT contrail_id FROM contrail WHERE name = %s;'
-
-        in_script = (choice,)
-        cur.execute(script, in_script)
-        conn.commit()
-        choiceID = cur.fetchall()
-
-    except Exception as error:
-        print(error)
-
-    finally:
-        if conn is not None:
-            conn.close()
-        if cur is not None:
-            cur.close()
-
-    print(choiceID[0][0])
-    return choiceID[0][0]
-
-def fortniteProject():
-    print('Welcome to Fortnite Locker')
-    comboV = CombinationView()
-    comboC = CombinationController(Combination(), comboV)
-    lockerC = LockerController(Locker(), LockerView(comboV))
-
-
-    while True:
-        selection = menu()
-
-        if selection == 1: #  log in a new combo
-            newCombo = Combination()
-            comboC.setCombination(newCombo)
-            name = input("Enter combination name: ")
-            comboC.setComboName(name)
-            comboC.setComboOutfit()
-            comboC.setComboGlider()
-            comboC.setComboPickaxe()
-            comboC.setComboContrail()
-            comboC.setComboBackbling()
-
-            # outfits
-            outfitNames = printOutfitNames()
-            outfitlen = len(outfitNames)
-
-            for i in range(outfitlen):
-                print('{}: {}'.format(i, outfitNames[i][0]))
-
-            outfitChoice = int(input("Enter outfit choice number or -1 for none: "))
-            choice = validateChoice(outfitNames[outfitChoice][0], 'outfit') if outfitChoice != -1 else None
-            if choice is not None:
-                comboC.setComboOutfit(choice)
-            elif choice == 'wrong':
-                print('invalid')
-                break
-
-            # gliders
-            gliderNames = printGliderNames()
-            gliderlen = len(gliderNames)
-
-            for i in range(gliderlen):
-                print('{}: {}'.format(i, gliderNames[i][0]))
-
-            gliderChoice = int(input("Enter glider choice number or -1 for none: "))
-            choice = validateChoice(gliderNames[gliderChoice][0], 'glider') if gliderChoice != -1 else None
-            if choice is not None:
-                comboC.setComboGlider(choice)
-            elif choice == 'wrong':
-                print('invalid')
-                break
-
-            # pickaxes
-            pickaxeNames = printPickaxeNames()
-            pickaxelen = len(pickaxeNames)
-
-            for i in range(pickaxelen):
-                print('{}: {}'.format(i, pickaxeNames[i][0]))
-
-            pickaxeChoice = int(input("Enter pickaxe choice number or -1 for none: "))
-            choice = validateChoice(pickaxeNames[pickaxeChoice][0], 'pickaxe') if pickaxeChoice != -1 else None
-            if choice is not None:
-                comboC.setComboPickaxe(choice)
-            elif choice == 'wrong':
-                print('invalid')
-                break
-
-            # contrails
-            contrailNames = printContrailNames()
-            contraillen = len(contrailNames)
-
-            for i in range(contraillen):
-                print('{}: {}'.format(i, contrailNames[i][0]))
-
-            contrailChoice = int(input("Enter Contrail choice number or -1 for none: "))
-            choice = validateChoice(contrailNames[contrailChoice][0], 'contrail') if contrailChoice != -1 else None
-            if choice is not None:
-                comboC.setComboContrail(choice)
-            elif choice == 'wrong':
-                print('invalid')
-                break
-
-            # backblings
-            backblingNames = printBackblings()
-            backblinglen = len(backblingNames)
-
-            for i in range(backblinglen):
-                print('{}: {}'.format(i, backblingNames[i][0]))
-
-            backblingChoice = int(input("Enter Back Bling choice number or -1 for none: "))
-            choice = validateChoice(backblingNames[backblingChoice][0], 'backbling') if backblingChoice != -1 else None
-            if choice is not None:
-                comboC.setComboBackbling(choice)
-            elif choice == 'wrong':
-                print('invalid')
-                break
-
-            lockerC.addNewCombo(newCombo)
-
-            print("Successfully added!\nSelect [3] in menu to log in number of wins!")
-
-        elif selection == 2: # show locker
-            lockerC.getLockeritems()
-        elif selection == 3: # update existing combo
-            while True:
-                menuSelection = updateMenu()
-                if menuSelection == 1:
-                    num = int(input("\nEnter number to be added: "))
-                    locker = lockerC.getAllLockerNames()
-                    lockerlen = len(locker)
-                    for i in range(lockerlen):
-                        print('{}: {}'.format(i, locker[i]))
-                    num2 = int(input("\nChoose which Combination to update: "))
-                    chosen = locker[num2] if num2 < len(locker) else None
-                    if chosen is None:
-                        print("No such Combination")
-                        break
-
-                    # get the specific combo
-                    lockerCombo = lockerC.getLockerCombos()
-                    comboC.setCombination(lockerCombo[num2])
-                    comboC.updateSolo(num)
-
-                    print("Successfully updated")
-                    break
-                elif menuSelection == 2:
-                    num = int(input("\nEnter number to be added: "))
-                    locker = lockerC.getAllLockerNames()
-                    lockerlen = len(locker)
-                    for i in range(lockerlen):
-                        print('{}: {}'.format(i, locker[i]))
-                    num2 = int(input("\nChoose which Combination to update: "))
-                    chosen = locker[num2] if num2 < len(locker) else None
-                    if chosen is None:
-                        print("No such Combination")
-                        break
-
-                    # get the specific combo
-                    lockerCombo = lockerC.getLockerCombos()
-                    comboC.setCombination(lockerCombo[num2])
-                    comboC.updateDuo(num)
-
-                    print("Successfully updated")
-                    break
-                elif menuSelection == 3:
-                    num = int(input("\nEnter number to be added: "))
-                    locker = lockerC.getAllLockerNames()
-                    lockerlen = len(locker)
-                    for i in range(lockerlen):
-                        print('{}: {}'.format(i, locker[i]))
-                    num2 = int(input("\nChoose which Combination to update: "))
-                    chosen = locker[num2] if num2 < len(locker) else None
-                    if chosen is None:
-                        print("No such Combination")
-                        break
-
-                    # get the specific combo
-                    lockerCombo = lockerC.getLockerCombos()
-                    comboC.setCombination(lockerCombo[num2])
-                    comboC.updateTrio(num)
-
-                    print("Successfully updated")
-                    break
-                elif menuSelection == 4:
-                    num = int(input("\nEnter number to be added: "))
-                    locker = lockerC.getAllLockerNames()
-                    lockerlen = len(locker)
-                    for i in range(lockerlen):
-                        print('{}: {}'.format(i, locker[i]))
-                    num2 = int(input("\nChoose which Combination to update: "))
-                    chosen = locker[num2] if num2 < len(locker) else None
-                    if chosen is None:
-                        print("No such Combination")
-                        break
-
-                    # get the specific combo
-                    lockerCombo = lockerC.getLockerCombos()
-                    comboC.setCombination(lockerCombo[num2])
-                    comboC.updateSquad(num)
-
-                    print("Successfully updated")
-                    break
-                elif menuSelection == 5:
-                    break
-                else:
-                    print("Invalid")
-
-        elif selection == 4: # exit
-            exit()
-        else:
-            print("Invalid")
-
 if __name__ == '__main__':
-    # getFortnite()
-    fortniteProject()
+#     getFortnite()
+    fortnite = ViewAll(printOutfitNames(), printPickaxeNames(), printContrailNames(),printBackblings(), printGliderNames())
+    fortnite.start()
 
 

@@ -10,6 +10,8 @@ class LockerController:
 
     def getLockeritems(self):
         """Returns the locker"""
+        # print(self.lockerModel.getLocker())
+        # print(self.lockerView.displayLocker(self.lockerModel.getLocker()))
         return self.lockerView.displayLocker(self.lockerModel.getLocker())
 
     def getAllLockerNames(self):
