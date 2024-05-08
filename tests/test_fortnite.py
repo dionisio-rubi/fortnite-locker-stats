@@ -86,7 +86,7 @@ class LockerTest(unittest.TestCase):
         self.assertEqual(self.locker.addCombo(Combination()), None)
 
 class LockerViewTest(unittest.TestCase):
-def setUp(self):
+    def setUp(self):
         self.view = LockerView(CombinationView())
 
     def test_lockerView(self):

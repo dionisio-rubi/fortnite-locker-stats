@@ -40,5 +40,10 @@ python3 main.py
 To exit the application, just press the X button on the top right. After exiting the program, make sure to comment the line you uncommented beforehand, otherwise your locker will be cleared. That's it! Have fun! :)
 
 
+## CS 333 Information ##
+You can check out the docker portion of the project here [https://hub.docker.com/r/dionisiorubi/fortnite-locker-stats](https://hub.docker.com/r/dionisiorubi/fortnite-locker-stats).
+
+Here is the image for proof of coverage:
+
 ## Sources Used ##
 - [Fortnite API](https://fortnite-api.com/v2/cosmetics/br)
