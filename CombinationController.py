@@ -4,7 +4,7 @@ from CombinationView import CombinationView
 class CombinationController:
     """The controller for the combination class"""
 
-    def __init__(self, combination: Combination, view: CombinationView):
+    def __init__(self, combination: Combination=Combination(), view: CombinationView=CombinationView()):
         self.comboModel = combination
         self.comboview = view
 
