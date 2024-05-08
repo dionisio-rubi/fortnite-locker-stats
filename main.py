@@ -18,6 +18,7 @@ def getFortnite():
         cur = conn.cursor()
 
         #delete all tables if they exist
+
         cur.execute('DROP TABLE IF EXISTS locker;')
         cur.execute('DROP TABLE IF EXISTS backbling;')
         cur.execute('DROP TABLE IF EXISTS glider;')

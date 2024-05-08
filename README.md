@@ -39,5 +39,6 @@ python3 main.py
 ```
 To exit the application, just press the X button on the top right. After exiting the program, make sure to comment the line you uncommented beforehand, otherwise your locker will be cleared. That's it! Have fun! :)
 
+
 ## Sources Used ##
 - [Fortnite API](https://fortnite-api.com/v2/cosmetics/br)
