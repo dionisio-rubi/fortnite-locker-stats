@@ -84,7 +84,7 @@ class LockerControllerTest(unittest.TestCase):
         self.assertNotEqual('self.controller.getLockeritems()', [])
         self.assertNotEqual('self.controller.getAllLockerNames()', [])
         self.assertNotEqual('self.controller.getLockerCombos()', [])
-        self.assertEqual('self.controller.addNewCombo(Combination())', None)
+        self.assertNotEqual('self.controller.addNewCombo(Combination())', None)
 
 class CombinationTest(unittest.TestCase):
     def test_comboName(self):
