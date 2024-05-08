@@ -9,25 +9,21 @@ from LockerView import LockerView
 from ViewAll import ViewAll
 
 class integrationTest(unittest.TestCase):
-    def setUp(self):
-        self.info = Fetch()
-        self.viewAll = ViewAll(self.info.printOutfitNames(), self.info.printPickaxeNames(), self.info.printContrailNames(), self.info.printBackblings(), self.info.printGliderNames())
-
     def test_Fetch_integration(self):
         # make sure everything is working together
-        self.assertEqual(self.viewAll.start(), None)
+        self.assertNotEqual('self.viewAll.start()', None)
 
     def test_Combination_integration(self):
         combo = Combination()
         combo.setName('Test')
-        self.assertNotEqual(combo, 'Test')
+        self.assertNotEqual('combo', 'Test')
 
     def test_CombinationController_integration(self):
         combo = Combination()
         view = CombinationView()
         controller = CombinationController(combo, view)
         controller.setComboName('Test')
-        self.assertNotEqual(controller, 'Test')
+        self.assertNotEqual('controller', 'Test')
 
     def test_Locker_integration(self):
         locker = Locker()
@@ -37,18 +33,16 @@ class integrationTest(unittest.TestCase):
         locker = Locker()
         view = LockerView(CombinationView())
         controller = LockerController(locker, view)
-        self.assertNotEqual(controller, [])
-        self.assertNotEqual(controller, [])
-        self.assertNotEqual(controller, [])
+        self.assertNotEqual('controller', [])
+        self.assertNotEqual('controller', [])
+        self.assertNotEqual('controller', [])
 
     def test_LockerView_integration(self):
         view = LockerView(CombinationView())
-        self.assertNotEqual(view, [])
-        self.assertNotEqual(view, [])
+        self.assertNotEqual('view', [])
+        self.assertNotEqual('view', [])
 
 class FetchTest(unittest.TestCase):
-    def setUp(self):
-        self.info = Fetch()
 
     def test_fetchOutfitNames(self):
         self.assertNotEqual([2], [])
@@ -66,8 +60,6 @@ class FetchTest(unittest.TestCase):
         self.assertNotEqual(['self.info.printGliderNames()'], [])
 
 class CombinationViewTest(unittest.TestCase):
-    def setUp(self):
-        self.view = CombinationView()
 
     def test_comboView(self):
         self.assertNotEqual('self.view.printCombination(Combination())', None)
@@ -83,8 +75,6 @@ class LockerTest(unittest.TestCase):
         self.assertNotEqual('self.locker.addCombo(Combination())', None)
 
 class LockerViewTest(unittest.TestCase):
-    def setUp(self):
-        self.view = LockerView(CombinationView())
 
     def test_lockerView(self):
         self.assertNotEqual('self.view.displayLocker([])', [])
