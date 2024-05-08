@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/fortnite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name=".coverage" uuid="e8b8e696-206d-4349-a726-d042cd962f0a">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\rubdi\PycharmProjects\fortnite-locker-stats\.coverage</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
