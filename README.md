@@ -41,7 +41,7 @@ To exit the application, just press the X button on the top right. After exiting
 
 
 ## CS 333 Information ##
-You can check out the docker portion of the project here [https://hub.docker.com/r/dionisiorubi/fortnite-locker-stats](https://hub.docker.com/r/dionisiorubi/fortnite-locker-stats).
+You can check out the docker portion of the project here [https://hub.docker.com/r/dionisiorubi/fortnite-locker-stats](https://hub.docker.com/repository/docker/dionisiorubi/fortnite-locker-stats/general).
 
 Here is the image for proof of coverage:
 ![Coverage](/coverageProof.jpg)
